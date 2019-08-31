@@ -3,10 +3,8 @@ pipeline{
     stages {
         stage ('checkout'){
             steps{
-                checkout scm: [
-                    sh 'echo "checking out repo"'
-
-                ]
+                checkout scm
+                sh 'echo "checking out repo"'
             }
         }
     }
