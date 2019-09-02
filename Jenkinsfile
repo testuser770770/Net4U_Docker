@@ -22,5 +22,9 @@ pipeline{
                 }
             }
         }
+
+        stage ('test docker'){
+            sh 'curl localhost:8081'
+        }
     }
 }
