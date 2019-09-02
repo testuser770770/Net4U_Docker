@@ -11,8 +11,9 @@ pipeline{
         stage ('run docker'){
             steps{
                 sh 'echo "setting CWD to docker dir"'
-                sh 'cd ./docker'
-                sh 'pwd'
+                dir("${env.WORKSPACE}/docker"){
+                    sh "pwd"
+                }
                 sh 'echo "trying to run docker-compose up"'
                 sh 'docker-compose up'
             }
