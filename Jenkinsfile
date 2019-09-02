@@ -32,7 +32,7 @@ pipeline{
                     def response = sh(returnStdout: true, script: 'curl localhost:8081')
                     def validated = false
                     if ( "${response}" =~ /Moshe/){
-                        $(validated) = true
+                        validated = true
                     }
 
                     sh 'echo "${validated}"'
