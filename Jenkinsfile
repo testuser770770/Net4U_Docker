@@ -15,7 +15,7 @@ pipeline{
                     sh 'echo "stopping docker containers"'
                     sh 'docker ps -aq | xargs -r docker stop;'
                     sh 'echo "killing docker containers"'
-                    sh 'docker ps -aq | xargs -r docker kill;'
+                    sh 'docker ps -aq | xargs -r docker rm;'
                     sh 'echo "building docker image"'
                     sh 'docker build . -t "test"'
                     sh 'echo "trying to run docker"'
