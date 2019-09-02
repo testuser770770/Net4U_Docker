@@ -37,7 +37,7 @@ pipeline{
                     //     echo "docker run was unsuccessful..."
                     // }
                     sh 'echo "${response}"'
-                    if ( ${response} ==~ /Moshe/){
+                    if ( "${response}" ==~ /Moshe/){
                         echo "SUCCESS!"
                     }
                 }
