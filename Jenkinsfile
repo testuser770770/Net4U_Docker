@@ -13,12 +13,11 @@ pipeline{
                 sh 'echo "setting CWD to docker dir"'
                 dir("${env.WORKSPACE}/docker"){
                     sh "pwd"
+                    sh 'echo "trying to run docker build & docker run"'
+                    sh 'docker build . -t "test"'
+                    sh 'echo "trying to run docker"'
+                    sh 'docker run -dit --name my_app  -p 8080:80 test'
                 }
-                sh 'echo "trying to run docker build & docker run"'
-                sh "pwd"
-                sh 'docker build . -t "test"'
-                sh 'echo "trying to run docker"'
-                sh 'docker run -dit --name my_app  -p 8080:80 test'
             }
         }
     }
