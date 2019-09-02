@@ -13,6 +13,8 @@ pipeline{
                 sh 'echo "setting CWD to docker dir"'
                 dir("${env.WORKSPACE}/docker"){
                     sh "pwd"
+                    sh 'echo "cleaning env with docker rm $(docker ps -aq)"'
+                    sh 'docker rm $(docker ps -aq)'
                     sh 'echo "trying to run docker build & docker run"'
                     sh 'docker build . -t "test"'
                     sh 'echo "trying to run docker"'
