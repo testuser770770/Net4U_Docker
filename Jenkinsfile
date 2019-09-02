@@ -38,7 +38,7 @@ pipeline{
                     // }
                     sh 'echo "${response}"'
                     if ( "${response}" ==~ /Moshe/){
-                        echo "SUCCESS!"
+                        sh 'echo "SUCCESS!"'
                     }
                 }
             }
