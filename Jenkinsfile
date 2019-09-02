@@ -1,3 +1,5 @@
+#!groovy
+
 pipeline{
     agent any
     stages {
@@ -26,8 +28,15 @@ pipeline{
 
         stage ('test docker'){
             steps{
-                if (validate_docker("localhost:8081")){
-                    sh 'echo "SUCCESS"'
+                script{
+                    def response = sh(returnStdout: true, script: 'curl localhost:8081')
+                    // if ( "${response}.trim()" ==~ /Moshe/){
+                    //     echo "SUCCESS!"
+                    //     validated = true
+                    // }else{
+                    //     echo "docker run was unsuccessful..."
+                    // }
+                    sh 'echo "${response}"'
                 }
             }
         }
@@ -35,14 +44,5 @@ pipeline{
 }
 
 def validate_docker(url){
-    def response = sh(script: 'curl ${url}', returnStdout: true)
-    def validated = false
-    if ( "${response}.trim()" ==~ /Moshe/){
-        echo "SUCCESS!"
-        validated = true
-    }else{
-        echo "docker run was unsuccessful..."
-    }
-
-    return validated
+    
 }
