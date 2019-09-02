@@ -44,9 +44,9 @@ pipeline{
     post {
         always {
             echo 'I will always say Hello again!'
-            
+            msg.addRecipient(Message.RecipientType.TO, new InternetAddress("eyallei666@gmail.com"))
             emailext body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}",
-                recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider'], "eyallei666@gmail.com"],
+                recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']],
                 subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}"
             
         }
