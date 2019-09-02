@@ -16,7 +16,7 @@ pipeline{
                     sh 'echo "trying to run docker build & docker run"'
                     sh 'docker build . -t "test"'
                     sh 'echo "trying to run docker"'
-                    sh 'docker run -dit --name my_app  -p 8080:80 test'
+                    sh 'docker run -dit --name my_app  -p 8081:80 test'
                 }
             }
         }
