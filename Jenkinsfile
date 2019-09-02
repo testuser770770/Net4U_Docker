@@ -32,18 +32,17 @@ pipeline{
             }
         }
     }
+}
 
-    def validate_docker(url){
-        def response = sh(script: 'curl ${url}', returnStdout: true)
-        def validated = false
-        if ( "${response}.trim()" ==~ /Moshe/){
-            echo "SUCCESS!"
-            validated = true
-        }else{
-            echo "docker run was unsuccessful..."
-        }
-
-        return validated
+def validate_docker(url){
+    def response = sh(script: 'curl ${url}', returnStdout: true)
+    def validated = false
+    if ( "${response}.trim()" ==~ /Moshe/){
+        echo "SUCCESS!"
+        validated = true
+    }else{
+        echo "docker run was unsuccessful..."
     }
 
+    return validated
 }
