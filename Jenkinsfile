@@ -26,7 +26,7 @@ pipeline{
 
         stage ('test docker'){
             steps{
-                def response = sh 'curl localhost:8081'
+                def response = sh(script: 'curl localhost:8081', returnStdout: true)
                 if ( "${response}.trim()" ==~ /Moshe/){
                     echo "SUCCESS!"
                 }else{
