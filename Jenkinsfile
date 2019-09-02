@@ -30,18 +30,12 @@ pipeline{
             steps{
                 script{
                     def response = sh(returnStdout: true, script: 'curl localhost:8081')
-                    // if ( "${response}.trim()" ==~ /Moshe/){
-                    //     echo "SUCCESS!"
-                    //     validated = true
-                    // }else{
-                    //     echo "docker run was unsuccessful..."
-                    // }
-                    // sh 'echo "${response}"'
-                    if ( "${response}" ==~ /Moshe/){
-                        sh 'echo "SUCCESS!"'
-                    }else{
-                        sh 'echo "failed...................."'
+                    def validated = false
+                    if ( "${response}" =~ /Moshe/){
+                        $(validated) = true
                     }
+
+                    sh 'echo "${validated}"'
                 }
             }
         }
