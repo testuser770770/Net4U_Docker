@@ -25,14 +25,25 @@ pipeline{
         }
 
         stage ('test docker'){
-            def response = sh(script: 'curl localhost:8081', returnStdout: true)
             steps{
-                if ( "${response}.trim()" ==~ /Moshe/){
-                    echo "SUCCESS!"
-                }else{
-                    echo "docker run was unsuccessful..."
+                if (validate_docker("localhost:8081")){
+                    sh 'echo "SUCCESS"'
                 }
             }
         }
     }
+
+    def validate_docker(url){
+        def response = sh(script: 'curl ${url}', returnStdout: true)
+        def validated = false
+        if ( "${response}.trim()" ==~ /Moshe/){
+            echo "SUCCESS!"
+            validated = true
+        }else{
+            echo "docker run was unsuccessful..."
+        }
+
+        return validated
+    }
+
 }
