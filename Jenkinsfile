@@ -24,7 +24,9 @@ pipeline{
         }
 
         stage ('test docker'){
-            sh 'curl localhost:8081'
+            steps{
+                sh 'curl localhost:8081'
+            }
         }
     }
 }
